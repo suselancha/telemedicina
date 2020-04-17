@@ -1,0 +1,62 @@
+@extends('backend.layouts.app')
+
+@section('content')
+
+    <div class="row">
+      </div>
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h3 class="mb-0">Especialidades</h3>
+                </div>
+                <div class="col text-right">
+                  <a href="{{ url('especialidades/create') }}" class="btn btn-sm btn-success">
+                    Nueva especialidad
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              @if(session('notificacion'))
+                <div class="alert alert-success" role="alert">
+                  {{ session('notificacion') }}
+                </div>
+              @endif
+            </div>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach($especialidades as $especialidad)
+                  <tr>
+                    <th scope="row">
+                      {{ $especialidad->nombre }}
+                    </th>
+                    <td>
+                      {{ $especialidad->descripcion }}
+                    </td>
+                    <td>                      
+                      <form  action="{{ url('especialidades/'.$especialidad->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ url('/especialidades/'.$especialidad->id.'/edit') }}" class="btn btn-sm btn-primary">Editar</a>
+                        <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+                      </form>                      
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+      
+      
+@endsection

@@ -8,14 +8,14 @@
   <meta name="author" content="Creative Tim">
   <title>Sistema de Reserva de Citas | {{ config('app.name') }}</title>
   <!-- Favicon -->
-  <link href="backend/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="{{ asset('backend/img/brand/favicon.png') }}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="backend/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="backend/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="{{ asset('backend/vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
+  <link href="{{ asset('backend/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="backend/css/argon.css?v=1.0.0" rel="stylesheet">
+  <link type="text/css" href="{{ asset('backend/css/argon.css?v=1.0.0') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
-        <img src="backend/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <img src="{{ asset('backend/img/brand/blue.png') }}" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -47,7 +47,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="backend/img/theme/team-4-800x800.jpg">
+                <img alt="Image placeholder" src="{{ asset('backend/img/theme/team-4-800x800.jpg') }}">
               </span>
             </div>
           </a>
@@ -61,7 +61,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="./index.html">
-                <img src="backend/img/brand/blue.png">
+                <img src="{{ asset('backend/img/brand/blue.png') }}">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -82,7 +82,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Panel de Administración</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -100,7 +100,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="backend/img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="{{ asset('backend/img/theme/team-4-800x800.jpg') }}">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name  }}</span>
@@ -132,13 +132,13 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="backend/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('backend/vendor/jquery/dist/jquery.min.js') }}"></script>
+  <script src="{{ asset('backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Optional JS -->
-  <script src="backend/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="backend/vendor/chart.js/dist/Chart.extension.js"></script>
+  <script src="{{ asset('backend/vendor/chart.js/dist/Chart.min.js') }}"></script>
+  <script src="{{ asset('backend/vendor/chart.js/dist/Chart.extension.js') }}"></script>
   <!-- Argon JS -->
-  <script src="backend/js/argon.js?v=1.0.0"></script>
+  <script src="{{ asset('backend/js/argon.js?v=1.0.0') }}"></script>
 </body>
 
 </html>
