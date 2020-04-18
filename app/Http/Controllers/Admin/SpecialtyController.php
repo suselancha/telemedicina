@@ -1,9 +1,12 @@
 <?php
-
-namespace App\Http\Controllers;
+//Agregar cuando se usa carpetas para los controladores
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Specialty;
+
+//Agregar cuando se usa carpetas para los controladores
+use App\Http\Controllers\Controller;
 
 class SpecialtyController extends Controller
 {

@@ -8,10 +8,10 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Nuevo médico</h3>
+                  <h3 class="mb-0">Editar paciente</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{ url('doctors') }}" class="btn btn-sm btn-default">
+                  <a href="{{ url('patients') }}" class="btn btn-sm btn-default">
                     Cancelar y volver
                   </a>
                 </div>
@@ -27,35 +27,33 @@
                         </ul>
                     </div>
                 @endif
-                <form  action="{{ url('doctors') }}" method="post">
+                <form  action="{{ url('patients/'.$paciente->id) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
-                        <label form="name">Nombre del médico</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name')}}">
+                        <label form="name">Nombre del paciente</label>
+                        <input type="text" name="name" class="form-control" value="{{ old('name', $paciente->name)}}">
                     </div>
                     <div class="form-group">
                         <label form="matricula">Dni</label>
-                        <input type="text" name="dni" class="form-control" value="{{ old('dni')}}">
-                    </div>
-                    <div class="form-group">
-                        <label form="matricula">Matrícula</label>
-                        <input type="text" name="matricula" class="form-control" value="{{ old('matricula')}}">
+                        <input type="text" name="dni" class="form-control" value="{{ old('dni', $paciente->dni)}}">
                     </div>
                     <div class="form-group">
                         <label form="email">Correo</label>
-                        <input type="text" name="email" class="form-control" value="{{ old('email')}}">
+                        <input type="text" name="email" class="form-control" value="{{ old('email', $paciente->email)}}">
                     </div>
                     <div class="form-group">
                         <label form="direccion">Dirección</label>
-                        <input type="text" name="direccion" class="form-control" value="{{ old('direccion')}}">
+                        <input type="text" name="direccion" class="form-control" value="{{ old('direccion', $paciente->direccion)}}">
                     </div>
                     <div class="form-group">
                         <label form="telefono">Teléfono</label>
-                        <input type="text" name="telefono" class="form-control" value="{{ old('telefono')}}">
+                        <input type="text" name="telefono" class="form-control" value="{{ old('telefono', $paciente->telefono)}}">
                     </div>
                     <div class="form-group">
-                        <label form="telefono">Contraseña</label>
-                        <input type="text" name="password" class="form-control" value="{{ Str::random(6)}}">
+                        <label form="password">Contraseña</label>
+                        <input type="text" name="password" class="form-control" value="">
+                        <p>Ingrese un valor si solo desea modificar la contraseña</p>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Guardar

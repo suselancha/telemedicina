@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('matricula');
+            $table->string('dni')->unique();
+            $table->string('matricula')->unique()->nullable();
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->string('role'); //admin - doctor - paciente
