@@ -1,5 +1,9 @@
 @extends('backend.layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -59,12 +63,27 @@
                         <input type="text" name="password" class="form-control" value="">
                         <p>Ingrese un valor si solo desea modificar la contraseña</p>
                     </div>
+                    <div class="form-group">
+                        <label form="telefono">Especialidades</label>
+                        <select name="specialties[]" id="specialties" class="form-control selectpicker" data-style="btn-default" multiple title="Seleccione una o unas">
+                            @foreach ($especialidades as $especialidad)
+                                <option value="{{ $especialidad->id }}">{{ $especialidad->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>
                 </form>
             </div>
           </div>
-      
-      
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script>
+    $(document).ready(() => {
+        $('#specialties').selectpicker('val', @json($especialidades_ids));
+    });
+    </script>
 @endsection

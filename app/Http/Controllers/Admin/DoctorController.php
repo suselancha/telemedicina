@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Specialty;
 
 //Agregar cuando se usa carpetas para los controladores
 use App\Http\Controllers\Controller;
@@ -30,7 +31,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('backend.doctor.create');
+        $especialidades = Specialty::all();
+        return view('backend.doctor.create', compact('especialidades'));
     }
 
     /**
@@ -41,17 +43,18 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $rules = [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'dni' => 'required|digits:8|unique:users',
-            'matricula' => 'required|digits:8|unique:users',
+            'matricula' => 'unique:users',
             'direccion' => 'nullable|min:5',
             'telefono' => 'nullable|min:5'
         ];
         $this->validate($request, $rules);
         // Asignacion Masiva hay q definir en el modelo: fillable
-        User::create(
+        $user = User::create(
             //$request->all();
             $request->only('name', 'email', 'dni', 'matricula', 'direccion', 'telefono')
             + [
@@ -59,6 +62,8 @@ class DoctorController extends Controller
                 'password' => bcrypt($request->password)
             ]   
         );
+        //Create relacion mucho a muchos
+        $user->specialties()->attach($request->input('specialties'));
         $notificacion = 'El médico se ha registrado correctamente.';
         return redirect('/doctors')->with(compact('notificacion'));
     }
@@ -83,7 +88,10 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = User::doctores()->findOrFail($id);
-        return view('backend.doctor.edit', compact('doctor'));
+        $especialidades = Specialty::all();
+        //Obtenemos como array los ids
+        $especialidades_ids = $doctor->specialties()->pluck('specialties.id');
+        return view('backend.doctor.edit', compact('doctor','especialidades', 'especialidades_ids'));
     }
 
     /**
@@ -99,7 +107,7 @@ class DoctorController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email,'.$id.',id',
             'dni' => 'required|digits:8|unique:users,dni,'.$id.',id',
-            'matricula' => 'required|digits:8|unique:users,matricula,'.$id.',id',
+            'matricula' => 'unique:users,matricula,'.$id.',id',
             'direccion' => 'nullable|min:5',
             'telefono' => 'nullable|min:5'
         ];
@@ -112,6 +120,8 @@ class DoctorController extends Controller
             $data += ['password' => bcrypt($password)];
         $user->fill($data);
         $user->save();
+        //Update relacion mucho a muchos
+        $user->specialties()->sync($request->input('specialties'));
         $notificacion = 'La información del médico se ha actualizado correctamente.';
         return redirect('/doctors')->with(compact('notificacion'));
     }
