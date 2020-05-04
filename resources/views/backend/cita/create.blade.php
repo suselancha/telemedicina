@@ -67,35 +67,38 @@
                                 data-date-end-date="+30d">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label form="direccion">Hora de atención</label>
-                        <div id="hours">
-                            <div class="alert alert-info" role="alert">
-                                No hay fechas disponibles!
+                    <div class="form-row">
+                        <div class="form-group col-md-6"> 
+                            <label form="direccion">Hora de atención</label>
+                            <div id="hours">
+                                <div class="alert alert-info" role="alert">
+                                    No hay fechas disponibles!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="type">Tipo de consulta</label>
+                            <div class="custom-control custom-radio mb-3">
+                                <input type="radio" id="type1" name="type" class="custom-control-input"
+                                value="Consulta" checked>
+                                <label class="custom-control-label" for="type1">Consulta</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-3">
+                                <input type="radio" id="type2" name="type" class="custom-control-input"
+                                value="Examen">
+                                <label class="custom-control-label" for="type2">Examen</label>
+                            </div>
+                            <div class="custom-control custom-radio mb-3">
+                                <input type="radio" id="type3" name="type" class="custom-control-input"
+                                value="Operacion">
+                                <label class="custom-control-label" for="type3">Operacion</label>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="type">Tipo de consulta</label>
-                        <div class="custom-control custom-radio mb-3">
-                            <input type="radio" id="type1" name="type" class="custom-control-input"
-                            value="Consulta" checked>
-                            <label class="custom-control-label" for="type1">Consulta</label>
-                        </div>
-                        <div class="custom-control custom-radio mb-3">
-                            <input type="radio" id="type2" name="type" class="custom-control-input"
-                            value="Examen">
-                            <label class="custom-control-label" for="type2">Examen</label>
-                        </div>
-                        <div class="custom-control custom-radio mb-3">
-                            <input type="radio" id="type3" name="type" class="custom-control-input"
-                            value="Operacion">
-                            <label class="custom-control-label" for="type3">Operacion</label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Guardar
-                    </button>
+                        
+                    
+                     
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
           </div>
@@ -104,4 +107,5 @@
 @section('scripts')
         <script src= {{ asset('backend/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}></script>
         <script src= {{ asset('backend/cita/create.js') }}></script>
+            <!--Header-area/-->
 @endsection

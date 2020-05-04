@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
+  <meta name="author" content="Creative Tim">  
   <title>Sistema de Reserva de Citas | {{ config('app.name') }}</title>
   <!-- Favicon -->
   <link href="{{ asset('backend/img/brand/favicon.png') }}" rel="icon" type="image/png">

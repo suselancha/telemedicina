@@ -1,102 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <title>Instituto de Psicopatología</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">	
+    <!--================Header Menu Area =================-->
+    @include('frontend.parciales.header')
+    <!--================Header Menu Area =================-->
 
-        <title>Hotel Portobelo</title>        
+    @yield('contenido')
 
-        <link rel="icon" href="img/icono.jpg">
+    <!--================ Start Footer Area =================-->
+    
+    @include('frontend.parciales.footer')
 
-        <!--=====================================
-        VÍNCULOS CSS
-        ======================================-->
-
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-        <!-- Fuente Open Sans y Ubuntu -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Ubuntu" rel="stylesheet">
-
-        <!-- bootstrap datepicker -->
-        <link rel="stylesheet" href="css/plugins/bootstrap-datepicker.standalone.min.css">
-
-        <!-- jdSlider -->
-        <link rel="stylesheet" href="css/plugins/jquery.jdSlider.css">
-
-        <!-- Pano -->
-        <link rel="stylesheet" href="css/plugins/jquery.pano.css">
-
-        <!-- fullCalendar -->
-        <link rel="stylesheet" href="css/plugins/fullcalendar.min.css">
-
-        <!-- Hoja de estilo personalizada -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/habitaciones.css">
-        <link rel="stylesheet" href="css/reservas.css">
-        <link rel="stylesheet" href="css/perfil.css">
-
-        <!--=====================================
-        VÍNCULOS JAVASCRIPT
-        ======================================-->
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-        <!-- bootstrap datepicker -->
-        <!-- https://bootstrap-datepicker.readthedocs.io/en/latest/ -->
-        <script src="js/plugins/bootstrap-datepicker.min.js"></script>
-
-        <!-- https://easings.net/es# -->
-        <script src="js/plugins/jquery.easing.js"></script>
-
-        <!-- https://markgoodyear.com/labs/scrollup/ -->
-        <script src="js/plugins/scrollUP.js"></script>
-
-        <!-- jdSlider -->
-        <!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
-        <script src="js/plugins/jquery.jdSlider-latest.js"></script>
-
-        <!-- Pano -->
-        <!-- https://www.jqueryscript.net/other/360-Degree-Panoramic-Image-Viewer-with-jQuery-Pano.html -->
-        <script src="js/plugins/jquery.pano.js"></script>
-
-        <!-- fullCalendar -->
-        <!-- https://momentjs.com/ -->
-        <script src="js/plugins/moment.js"></script>
-        <!-- https://fullcalendar.io/docs/background-events-demo -->	
-        <script src="js/plugins/fullcalendar.min.js"></script>
+    <!--================ End Footer Area =================-->
 
 
-    </head>
-    <body>
 
-        @yield('header')
 
-        @yield('banner')
 
-        @yield('calendario')
-
-        @yield('contacto')
-
-        @yield('footer')
-
-        @yield('modal')
-
-        <script src="js/plantilla.js"></script>
-        <script src="js/menu.js"></script>
-        <script src="js/idiomas.js"></script>
-        <script src="js/reservas.js"></script>
-        
-    </body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/stellar.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/jquery.form.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/theme.js"></script>
+</body>
 </html>

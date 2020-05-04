@@ -1,154 +1,40 @@
-<!--=====================================
-HEADER
-======================================-->
-
-<header class="container-fluid p-0 bg-white">
-	
-	<div class="container p-0">
-		
-		<div class="grid-container py-2">
-
-			<!-- LOGO -->
-			
-			<div class="grid-item">
-
-				<a href="#">
-				
-					<img src="img/logoPortobelo.png" class="img-fluid">
-
-				</a>
-
-			</div>
-
-			<div class="grid-item d-none d-lg-block"></div>
-
-			<!-- INGRESO DE USUARIOS -->
-
-			<div class="grid-item d-none d-lg-block mt-2">
-
-				<a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
-
-			</div>
-
-			<!-- MENÚ HAMBURGUESA -->
-
-			<div class="grid-item mt-1 mt-sm-3 mt-md-4 mt-lg-2 botonMenu">
-				
-				<i class="fas fa-bars lead"></i>
-
-			</div>
-
-		</div>
-
-	</div>
-
-</header>
-
-<!--=====================================
-MENÚ
-======================================-->
-
-<nav class="menu container-fluid p-0">
-	
-	<ul class="nav nav-justified py-2">
-		
-		<li class="nav-item">
-			<a class="nav-link text-white" href="#planes">Planes</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white" href="#habitaciones">Habitaciones</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white" href="#pueblo">El pueblo</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white" href="#restaurante">Restaurante</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white" href="#contactenos">Contáctenos</a>
-		</li>
-
-		<li class="nav-item">
-			
-			<ul class="my-2 py-1">
-				
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-facebook-f text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-twitter text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-youtube text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-				<li>
-					<a href="#" target="_blank">
-						<i class="fab fa-instagram text-white float-left mx-2"></i>
-					</a>
-				</li>
-
-			</ul>
-			
-		</li>
-
-	</ul>
-
-
-</nav>
-
-<!--=====================================
-MENÚ MÓVIL
-======================================-->
-<div class="menuMovil">
-	
-	<div class="row">
-		
-		<div class="col-6">
-			
-			<a href="{{ route('login') }}">
-				<i class="fas fa-user lead ml-3 mt-4"></i>
-			</a>
-
-		</div>	
-	</div>
-
-	
-
-	<ul class="nav flex-column mt-4 pl-4 mb-5">
-		
-		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#planesMovil">Planes</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#habitaciones">Habitaciones</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#pueblo">Recorrido por el pueblo</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#restaurante">Restaurante</a>
-		</li>
-
-		<li class="nav-item">
-			<a class="nav-link text-white my-2" href="#contactenos">Contáctenos</a>
-		</li>
-
-	</ul>
-
-</div>
+<header class="header_area">
+        <div class="top_menu row m0">
+            <div class="container">
+                <div class="float-left">
+                    <a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>info@example.com</a>                    
+                    <span class="dn_btn"> <i class="ti-location-pin"></i>San Martín 141. Te 4223948</span>
+                </div>
+                <div class="float-right">
+                    <ul class="list header_social">
+                        <li><a href="#"><i class="ti-facebook"></i></a></li>
+                        <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
+                        <li><a href="#"><i class="ti-linkedin"></i></a></li>                        
+                    </ul>	
+                </div>
+            </div>	
+        </div>	
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/"><img src="img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>                             
+                            <li class="nav-item"><a class="nav-link" href="/especialidad">Especialidades</a></li> 
+                            <li class="nav-item"><a class="nav-link" href="doctors.html">Médicos</a></li>                                
+                            <li class="nav-item"><a class="nav-link" href="/login">Reserva de Turnos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>

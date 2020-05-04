@@ -1,21 +1,11 @@
 @extends('frontend.layouts.app')
 
-@section('header')
-    @include('frontend.parciales.header')
-@endsection
-
-@section('banner')
+@section('contenido')
     @include('frontend.inicio.banner')
-@endsection
-
-@section('contacto')
-    @include('frontend.parciales.contacto')
-@endsection
-
-@section('footer')
-    @include('frontend.parciales.footer')
-@endsection
-
-@section('modal')
-    @include('frontend.parciales.modal')
+    @include('frontend.inicio.seccion')
+    @include('frontend.inicio.about')
+    @include('frontend.inicio.team')
+    @include('frontend.parciales.banner1')
+    @include('frontend.inicio.especialidad')
+    @include('frontend.parciales.banner2')
 @endsection

@@ -8,6 +8,8 @@ use App\Appointment;
 use Validator; 
 use Carbon\Carbon;
 
+require_once "/var/www/html/telemedicina/vendor/autoload.php";
+
 class AppointmentController extends Controller
 {
     public function create()
@@ -20,12 +22,15 @@ class AppointmentController extends Controller
     {
         $rules = [
             'description' => 'required',
-            'specialty_id' => 'exists:specialties,id',
-            'doctor_id' => 'exists:users,id',
+            'specialty_id' => 'required|exists:specialties,id',
+            'doctor_id' => 'required|exists:users,id',
             'scheduled_time' => 'required'
         ];
         $messages = [
-            'scheduled_time.required' => 'Por favor selecciones una hora validad para su cita.'
+            'scheduled_time.required' => 'Por favor selecciones una hora validad para su cita.',
+            'description' => 'Ingrese una descripción',
+            'specialty_id' => 'Seleccione una especialidad',
+            'doctor_id' => 'Selecciones un médico'
         ];
 //VALIDA QUE NO SE HAYA RESERVADO LA HORA ANTES DE GUARDAR
         //$this->validate($request, $rules, $messages);
@@ -59,7 +64,10 @@ class AppointmentController extends Controller
                     ->withInput();
         }
 //FIN VALIDA
-        $data = $request->only([
+
+        
+        
+        /**$data = $request->only([
             'description',
             'doctor_id',
             'specialty_id',
@@ -68,8 +76,9 @@ class AppointmentController extends Controller
             'type'
         ]);
         $data['patient_id'] = auth()->id();
-        Appointment::create($data);
-        $notificacion = 'La cita se ha registrado correctamente!';
+        Appointment::create($data);**/
+        //$notificacion = 'La cita se ha registrado correctamente!';
+        $notificacion = `<script src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js" data-public-key="TEST-f718ec65-86df-4525-af2f-73c035963b84" data-transaction-amount="100.00"></script>`;
         return back()->with(compact('notificacion'));
     }
 }
