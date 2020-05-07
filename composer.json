@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "mercadopago/dx-php": "^2.0"
+        "mercadopago/dx-php": "^2.0",
+        "santigraviano/laravel-mercadopago": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -45,7 +46,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "MP\\": "vendor/mercadopago/dx-php/src/MercadoPago/"
         }
     },
     "minimum-stability": "dev",

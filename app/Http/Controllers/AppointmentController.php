@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specialty;
+use App\User;
 use App\Appointment; 
 use Validator; 
 use Carbon\Carbon;
 
-require_once "/var/www/html/telemedicina/vendor/autoload.php";
+use MercadoPago\SDK;
+use MercadoPago\Payment;
+
 
 class AppointmentController extends Controller
 {
@@ -20,6 +23,7 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
         $rules = [
             'description' => 'required',
             'specialty_id' => 'required|exists:specialties,id',
@@ -64,10 +68,12 @@ class AppointmentController extends Controller
                     ->withInput();
         }
 //FIN VALIDA
-
-        
-        
-        /**$data = $request->only([
+        //PASO DATA
+        $nombre_esp = Specialty::where('id', $request->specialty_id)->get(['nombre']);
+        $nombre_doc = User::where('id', $request->doctor_id)->get(['name']);
+        //dd ($nombre_esp);
+        //dd($nombre_esp['0']->nombre);
+        $data = $request->only([
             'description',
             'doctor_id',
             'specialty_id',
@@ -76,9 +82,59 @@ class AppointmentController extends Controller
             'type'
         ]);
         $data['patient_id'] = auth()->id();
-        Appointment::create($data);**/
-        //$notificacion = 'La cita se ha registrado correctamente!';
-        $notificacion = `<script src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js" data-public-key="TEST-f718ec65-86df-4525-af2f-73c035963b84" data-transaction-amount="100.00"></script>`;
-        return back()->with(compact('notificacion'));
+        $data['nombre_esp'] = $nombre_esp['0']->nombre;
+        $data['nombre_doc'] = $nombre_doc['0']->name;
+        return view('backend.cita.confirmar', compact('data'));
+    }
+
+
+    public function pagar(Request $request)
+    {
+        /**
+         * Tarjetas demo: https://www.mercadopago.com.ar/developers/es/guides/payments/api/testing
+         * Como POST: https://www.mercadopago.com.ar/developers/es/guides/payments/web-tokenize-checkout/receiving-payment-by-card/
+        **/
+        //dd($request);
+
+        //REALIZAR EL PAGO
+        $token = $request->token;
+        $payment_method_id = $request->payment_method_id;
+        $installments = $request->installments;
+        $issuer_id = $request->issuer_id;
+        
+        
+        //MP\SDK::setAccessToken("ENV_ACCESS_TOKEN");
+
+        SDK::setAccessToken("TEST-12042052548259-041321-2c54eef48ff5b311a32b400e625d9aba-170757050");
+        $payment = new Payment();
+        $payment->transaction_amount = 100.00;
+        $payment->token = $token;
+        $payment->description = "Pago";
+        $payment->installments = $installments;
+        $payment->payment_method_id = $payment_method_id;
+        $payment->issuer_id = $issuer_id;
+        $payment->payer = array(
+        "email" => "suselancha@hotmail.com"
+        );
+        // Guarda y postea el pago
+        $payment->save();
+        //dd($payment);
+        // Imprime el estado del pago
+        //dd($payment->status);
+        if($payment->status == "approved") {
+            $data = $request->only([
+                'description',
+                'doctor_id',
+                'specialty_id',
+                'scheduled_date',
+                'scheduled_time',
+                'type'
+            ]);
+            $data['patient_id'] = auth()->id();
+            Appointment::create($data);
+            $notificacion = 'La cita se ha registrado correctamente!';        
+            return back()->with(compact('notificacion'));
+        }
+        //FIN REALIZAR EL PAGO
     }
 }

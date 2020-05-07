@@ -94,11 +94,10 @@
                                 <label class="custom-control-label" for="type3">Operacion</label>
                             </div>
                         </div>
-                    </div>
-                        
-                    
-                     
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>                                         
+                    <button type="submit" class="btn btn-primary">
+                        Registrar
+                    </button>
                 </form>
             </div>
           </div>
