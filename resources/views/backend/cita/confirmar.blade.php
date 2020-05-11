@@ -47,13 +47,16 @@
                             <input type="hidden" name="scheduled_time" value="{{ $data['scheduled_time']}}">
                             <li>Tipo de consulta: {{ $data['type'] }}</li>
                             <input type="hidden" name="type" value="{{ $data['type']}}">
+                            <li>Costo consulta: {{ $data['consulta'] }}</li>
+                            <input type="hidden" name="consulta" value="{{ $data['consulta']}}">
                         </ul>
-                    </div>
+                    </div>                    
                     <script
                         src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
                         data-public-key="TEST-f718ec65-86df-4525-af2f-73c035963b84"
-                        data-transaction-amount="100.00">
+                        data-transaction-amount="<?php echo $data['consulta']?>">
                     </script>
+                    <img class="card-img-top" src="{{ asset('/img/mercadopago.png') }}" alt="Card image cap">
                 </form>
             </div>
           </div>

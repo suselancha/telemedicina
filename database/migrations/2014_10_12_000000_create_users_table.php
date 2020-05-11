@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('matricula')->unique()->nullable();
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
+            $table->string('consulta')->nullable();
             $table->string('role'); //admin - doctor - paciente
             $table->rememberToken();
             $table->timestamps();

@@ -52,6 +52,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/appointments/create', 'AppointmentController@create');
     Route::post('/appointments', 'AppointmentController@store');
     Route::post('/appointments/pagar', 'AppointmentController@pagar');
+    Route::get('/appointments/index', 'AppointmentController@index');
+    Route::get('/appointments/{appointment}/cancel', 'AppointmentController@showCancelForm');
+    Route::post('/appointments/{appointment}/postCancel', 'AppointmentController@postCancel');
 });
 
 Route::get('/specialties/{specialty}/doctors', 'Api\SpecialtyController@doctors');

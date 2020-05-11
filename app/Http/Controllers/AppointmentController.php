@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Specialty;
 use App\User;
 use App\Appointment; 
+use App\CitaCancelada;
 use Validator; 
 use Carbon\Carbon;
 
@@ -15,6 +16,25 @@ use MercadoPago\Payment;
 
 class AppointmentController extends Controller
 {
+    public function index()
+    {   
+        //CITAS RESERVADAS
+        $citasReservadas= Appointment::where('estado', 'Reservada')
+            ->where('patient_id', auth()->id())
+            ->paginate(10);
+
+        //CITAS CONFIRMADAS
+        $citasConfirmadas= Appointment::where('estado', 'Confirmada')
+            ->where('patient_id', auth()->id())
+            ->paginate(10);
+        
+        //CITAS ATENDIDAS Y CANCELAS
+        $citasHistorial= Appointment::whereIn('estado', ['Atendida', 'Cancelada'])
+            ->where('patient_id', auth()->id())
+            ->paginate(10);
+        return view('backend.cita.index', compact('citasReservadas', 'citasConfirmadas','citasHistorial'));
+    }
+
     public function create()
     {
         $especialidades = Specialty::all();
@@ -70,7 +90,7 @@ class AppointmentController extends Controller
 //FIN VALIDA
         //PASO DATA
         $nombre_esp = Specialty::where('id', $request->specialty_id)->get(['nombre']);
-        $nombre_doc = User::where('id', $request->doctor_id)->get(['name']);
+        $nombre_doc = User::where('id', $request->doctor_id)->get(['name', 'consulta']);
         //dd ($nombre_esp);
         //dd($nombre_esp['0']->nombre);
         $data = $request->only([
@@ -84,6 +104,7 @@ class AppointmentController extends Controller
         $data['patient_id'] = auth()->id();
         $data['nombre_esp'] = $nombre_esp['0']->nombre;
         $data['nombre_doc'] = $nombre_doc['0']->name;
+        $data['consulta'] = $nombre_doc['0']->consulta;
         return view('backend.cita.confirmar', compact('data'));
     }
 
@@ -107,9 +128,9 @@ class AppointmentController extends Controller
 
         SDK::setAccessToken("TEST-12042052548259-041321-2c54eef48ff5b311a32b400e625d9aba-170757050");
         $payment = new Payment();
-        $payment->transaction_amount = 100.00;
+        $payment->transaction_amount = $request->consulta;
         $payment->token = $token;
-        $payment->description = "Pago";
+        $payment->description = "Pago Cita Médica";
         $payment->installments = $installments;
         $payment->payment_method_id = $payment_method_id;
         $payment->issuer_id = $issuer_id;
@@ -131,10 +152,43 @@ class AppointmentController extends Controller
                 'type'
             ]);
             $data['patient_id'] = auth()->id();
+            $data['medio'] = $payment_method_id;
+            $data['cuotas'] = $installments;
+            $data['id_emisor'] = $issuer_id;
+            $data['monto'] = $request->consulta;
             Appointment::create($data);
             $notificacion = 'La cita se ha registrado correctamente!';        
-            return back()->with(compact('notificacion'));
+            //FALTA REDICCIONAR A LA PANTALLA DE PACIENTE CON TURNOS PAGADOS.
+            //return back()->with(compact('notificacion'));
+            return redirect('/appointments/create')->with(compact('notificacion'));
         }
         //FIN REALIZAR EL PAGO
+    }
+
+    public function showCancelForm(Appointment $appointment)
+    {
+        if($appointment->estado == "Confirmada")
+            return view('backend.cita.cancel', compact('appointment'));
+        
+        return redirect('/appointments/index');
+    }
+
+    //Appointment para el cancelar de la vista y cancelacion directa desde (citas-pendientes)
+    //Request para el cancelar de la vista cancel (cancelacion con confirmacion)
+    public function postCancel(Appointment $appointment, Request $request)
+    {
+        if($request->has('justificacion')) {
+            $cancelacion = New CitaCancelada();
+            $cancelacion->justificacion = $request->input('justificacion');
+            $cancelacion->cancelado_por = auth()->id();
+            //Por la relacion definida hacemos el save directamente
+            $appointment->cancelacion()->save($cancelacion);
+        }
+            
+
+        $appointment->estado = 'Cancelada';
+        $appointment->save();
+        $notificacion = 'La cita se ha cancelado correctamente.';
+        return redirect('/appointments/index')->with(compact('notificacion'));
     }
 }

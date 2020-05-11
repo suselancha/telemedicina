@@ -71,6 +71,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="" class="form-control-label">Precio Consulta</label>
+                        <input class="form-control" type="number" value="{{ old('consulta', $doctor->consulta)}}" name="consulta">
+                    </div>
                     <button type="submit" class="btn btn-primary">
                         Guardar
                     </button>

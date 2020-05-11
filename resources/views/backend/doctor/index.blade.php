@@ -31,7 +31,8 @@
                   <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Matrícula</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Consulta ($)</th>
                     <th scope="col">Opciones</th>
                   </tr>
                 </thead>
@@ -45,7 +46,10 @@
                       {{ $doctor->email }}
                     </td>
                     <td>
-                      {{ $doctor->matricula }}
+                      {{ $doctor->telefono }}
+                    </td>
+                    <td>
+                      {{ $doctor->consulta }}
                     </td>
                     <td>                      
                       <form  action="{{ url('doctors/'.$doctor->id) }}" method="post">

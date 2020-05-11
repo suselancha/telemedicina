@@ -52,7 +52,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/especialidades">
+            <a class="nav-link" href="/appointments/index">
                 <i class="ni ni-planet text-blue"></i> Mis citas
             </a>
         </li>

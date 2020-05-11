@@ -47,7 +47,7 @@ class DoctorController extends Controller
         $rules = [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'dni' => 'required|digits:8|unique:users',
+            'dni' => 'required|unique:users|min:7',
             'matricula' => 'unique:users',
             'direccion' => 'nullable|min:5',
             'telefono' => 'nullable|min:5'
@@ -56,7 +56,7 @@ class DoctorController extends Controller
         // Asignacion Masiva hay q definir en el modelo: fillable
         $user = User::create(
             //$request->all();
-            $request->only('name', 'email', 'dni', 'matricula', 'direccion', 'telefono')
+            $request->only('name', 'email', 'dni', 'matricula', 'direccion', 'telefono','consulta')
             + [
                 'role' => 'medico',
                 'password' => bcrypt($request->password)
@@ -106,7 +106,7 @@ class DoctorController extends Controller
         $rules = [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email,'.$id.',id',
-            'dni' => 'required|digits:8|unique:users,dni,'.$id.',id',
+            'dni' => 'required|min:7|unique:users,dni,'.$id.',id',
             'matricula' => 'unique:users,matricula,'.$id.',id',
             'direccion' => 'nullable|min:5',
             'telefono' => 'nullable|min:5'
@@ -114,7 +114,7 @@ class DoctorController extends Controller
         $this->validate($request, $rules);
         // Asignacion Masiva hay q definir en el modelo: fillable
         $user = User::doctores()->findOrFail($id);
-        $data = $request->only('name', 'email', 'dni', 'matricula', 'direccion', 'telefono');
+        $data = $request->only('name', 'email', 'dni', 'matricula', 'direccion', 'telefono', 'consulta');
         $password = $request->input('password');
         if($password)
             $data += ['password' => bcrypt($password)];

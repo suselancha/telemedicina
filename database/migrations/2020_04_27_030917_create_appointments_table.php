@@ -32,6 +32,13 @@ class CreateAppointmentsTable extends Migration
             $table->date('scheduled_date');
             $table->time('scheduled_time');
             $table->string('type');
+            $table->string('estado')->default('Reservada');
+            //MercadoPago
+            $table->string('medio');
+            $table->string('cuotas');
+            $table->string('id_emisor');
+            $table->string('monto');
+
             $table->timestamps();
         });
     }
