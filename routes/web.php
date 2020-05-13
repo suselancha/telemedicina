@@ -49,12 +49,14 @@ Route::middleware(['auth','doctor'])->namespace('Doctor')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/appointments/index', 'AppointmentController@index');    
     Route::get('/appointments/create', 'AppointmentController@create');
+    Route::get('/appointments/{appointment}', 'AppointmentController@show');
     Route::post('/appointments', 'AppointmentController@store');
     Route::post('/appointments/pagar', 'AppointmentController@pagar');
-    Route::get('/appointments/index', 'AppointmentController@index');
     Route::get('/appointments/{appointment}/cancel', 'AppointmentController@showCancelForm');
     Route::post('/appointments/{appointment}/postCancel', 'AppointmentController@postCancel');
+    Route::post('/appointments/{appointment}/confirmar', 'AppointmentController@postConfirmar');
 });
 
 Route::get('/specialties/{specialty}/doctors', 'Api\SpecialtyController@doctors');

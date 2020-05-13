@@ -20,7 +20,7 @@ class DoctorController extends Controller
     {
         //$doctors = User::all();
         //$doctors = User::where('role', 'medico')->get();
-        $doctors = User::doctores()->get();
+        $doctors = User::doctores()->paginate(5);
         return view('backend.doctor.index', compact('doctors'));
     }
 

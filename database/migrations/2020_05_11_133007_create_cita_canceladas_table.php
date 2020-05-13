@@ -21,8 +21,8 @@ class CreateCitaCanceladasTable extends Migration
 
             $table->string('justificacion')->nullable();
 
-            $table->unsignedBigInteger('cancelado_por');
-            $table->foreign('cancelado_por')->references('id')->on('users');
+            $table->unsignedBigInteger('cancelado_por_id');
+            $table->foreign('cancelado_por_id')->references('id')->on('users');
             
             $table->timestamps();
         });

@@ -18,21 +18,59 @@ class AppointmentController extends Controller
 {
     public function index()
     {   
-        //CITAS RESERVADAS
-        $citasReservadas= Appointment::where('estado', 'Reservada')
+        $role = auth()->user()->role;
+
+        if($role == "admin"){
+            //CITAS RESERVADAS
+            $citasReservadas= Appointment::where('estado', 'Reservada')            
+            ->paginate(10);
+
+            //CITAS CONFIRMADAS
+            $citasConfirmadas= Appointment::where('estado', 'Confirmada')
+                ->paginate(10);
+        
+            //CITAS ATENDIDAS Y CANCELAS (HISTORIAL)
+            $citasHistorial= Appointment::whereIn('estado', ['Atendida', 'Cancelada'])
+                ->paginate(10);
+        }elseif($role == "medico"){
+            //CITAS RESERVADAS
+            $citasReservadas= Appointment::where('estado', 'Reservada')
+            ->where('doctor_id', auth()->id())
+            ->paginate(10);
+
+            //CITAS CONFIRMADAS
+            $citasConfirmadas= Appointment::where('estado', 'Confirmada')
+                ->where('doctor_id', auth()->id())
+                ->paginate(10);
+        
+            //CITAS ATENDIDAS Y CANCELAS (HISTORIAL)
+            $citasHistorial= Appointment::whereIn('estado', ['Atendida', 'Cancelada'])
+                ->where('doctor_id', auth()->id())
+                ->paginate(10);
+        }elseif ($role == "paciente"){
+            //CITAS RESERVADAS
+            $citasReservadas= Appointment::where('estado', 'Reservada')
             ->where('patient_id', auth()->id())
             ->paginate(10);
 
-        //CITAS CONFIRMADAS
-        $citasConfirmadas= Appointment::where('estado', 'Confirmada')
-            ->where('patient_id', auth()->id())
-            ->paginate(10);
+            //CITAS CONFIRMADAS
+            $citasConfirmadas= Appointment::where('estado', 'Confirmada')
+                ->where('patient_id', auth()->id())
+                ->paginate(10);
         
-        //CITAS ATENDIDAS Y CANCELAS
-        $citasHistorial= Appointment::whereIn('estado', ['Atendida', 'Cancelada'])
-            ->where('patient_id', auth()->id())
-            ->paginate(10);
-        return view('backend.cita.index', compact('citasReservadas', 'citasConfirmadas','citasHistorial'));
+            //CITAS ATENDIDAS Y CANCELAS (HISTORIAL)
+            $citasHistorial= Appointment::whereIn('estado', ['Atendida', 'Cancelada'])
+                ->where('patient_id', auth()->id())
+                ->paginate(10);
+        }
+        
+        return view('backend.cita.index', compact('citasReservadas', 'citasConfirmadas','citasHistorial', 'role'));
+    }
+
+    public function show(Appointment $appointment)
+    {
+        $role = auth()->user()->role;
+        return view('backend.cita.show', compact('appointment', 'role'));
     }
 
     public function create()
@@ -167,8 +205,10 @@ class AppointmentController extends Controller
 
     public function showCancelForm(Appointment $appointment)
     {
-        if($appointment->estado == "Confirmada")
-            return view('backend.cita.cancel', compact('appointment'));
+        if($appointment->estado == "Confirmada" || $appointment->estado == "Reservada") {
+            $role = auth()->user()->role;
+            return view('backend.cita.cancel', compact('appointment', 'role'));
+        }
         
         return redirect('/appointments/index');
     }
@@ -180,7 +220,7 @@ class AppointmentController extends Controller
         if($request->has('justificacion')) {
             $cancelacion = New CitaCancelada();
             $cancelacion->justificacion = $request->input('justificacion');
-            $cancelacion->cancelado_por = auth()->id();
+            $cancelacion->cancelado_por_id = auth()->id();
             //Por la relacion definida hacemos el save directamente
             $appointment->cancelacion()->save($cancelacion);
         }
@@ -189,6 +229,16 @@ class AppointmentController extends Controller
         $appointment->estado = 'Cancelada';
         $appointment->save();
         $notificacion = 'La cita se ha cancelado correctamente.';
+        return redirect('/appointments/index')->with(compact('notificacion'));
+    }
+
+    //Si queremos podemos tener una tabla "cita_confirmadas" para llevar un log
+    //de quien y fecha:hora se confirma la cita
+    public function postConfirmar(Appointment $appointment)
+    {
+        $appointment->estado = 'Confirmada';
+        $appointment->save();
+        $notificacion = 'La cita se ha confirmado correctamente.';
         return redirect('/appointments/index')->with(compact('notificacion'));
     }
 }

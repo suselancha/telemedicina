@@ -69,7 +69,7 @@
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="/home">Panel de Administración</a>
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <!--form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
@@ -78,7 +78,7 @@
               <input class="form-control" placeholder="Search" type="text">
             </div>
           </div>
-        </form>
+        </form-->
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
@@ -86,7 +86,13 @@
               <div class="media align-items-center">
             
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name  }}</span>
+                @if(auth()->user()->role == "medico")
+                  <span class="mb-0 text-sm  font-weight-bold">Dr/a: {{ auth()->user()->name  }}</span>
+                @elseif(auth()->user()->role == "paciente")
+                  <span class="mb-0 text-sm  font-weight-bold">Paciente: {{ auth()->user()->name  }}</span>
+                @else
+                  <span class="mb-0 text-sm  font-weight-bold">Administrador: {{ auth()->user()->name  }}</span>
+                @endif
                 </div>
               </div>
             </a>

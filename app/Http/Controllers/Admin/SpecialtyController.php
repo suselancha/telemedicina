@@ -12,7 +12,7 @@ class SpecialtyController extends Controller
 {
     public function index()
     {
-        $especialidades = Specialty::all();
+        $especialidades = Specialty::paginate(5);
         return view('backend.especialidad.index', compact('especialidades'));
     }
 
@@ -37,6 +37,7 @@ class SpecialtyController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+    
         $this->validaciones($request);
                 
         $especialidad = new Specialty();

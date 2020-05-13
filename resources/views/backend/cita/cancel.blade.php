@@ -19,18 +19,22 @@
                     </div>
                 @endif              
 
-                <p>Estas a punto de cancelar tu cita reservada con el medico {{ $appointment->doctor->name}} para el dia: {{ $appointment->scheduled_date }}</p>
+                @if($role == "paciente")
+                  <p>Estas a punto de cancelar tu cita reservada con el medico {{ $appointment->doctor->name}} para el dia: {{ $appointment->scheduled_date }}</p>
+                @elseif($role == "medico")
+                  <p>Estas a punto de cancelar tu cita con el paciente {{ $appointment->patient->name}} para el dia: {{ $appointment->scheduled_date }} - hora: {{ $appointment->scheduled_time }}</p>
+                @else
+                  <p>Estas a punto de cancelar la cita reservada por el paciente {{ $appointment->patient->name}} para ser atendido por el medico {{ $appointment->doctor->name}} para el dia: {{ $appointment->scheduled_date }}- hora: {{ $appointment->scheduled_time }}</p>
+                @endif
 
                 <form action="{{ url('/appointments/'.$appointment->id.'/postCancel') }}" method="POST">
                     @csrf
                     <form-group>
                         <label for="justificacion">Por favor, cuentanos el motivo de la cancelacion:</label>
-                        <textarea required id="justificacion" name="justificacion" rows="3" class="form-control">
-                        
-                        </textarea>
+                        <textarea required id="justificacion" name="justificacion" rows="3" class="form-control"></textarea>
                     </form-group>
-                    <button class="bnt btn-danger" type="submit">Cancelar cita</button>
-                    <a href="{{ url('/appointments/index') }}" class="btn btn-default">
+                    <button class="bnt btn-sm btn-danger" type="submit">Cancelar cita</button>
+                    <a href="{{ url('/appointments/index') }}" class="btn btn-sm btn-default">
                         Volver a "Mis citas"
                     </a>
                 </form>

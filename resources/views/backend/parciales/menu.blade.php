@@ -8,55 +8,14 @@
     @endif
 </h6>
 <ul class="navbar-nav">
-    @if (auth()->user()->role == 'admin')
-        <li class="nav-item">
-        <a class="nav-link" href="/home">
-            <i class="ni ni-tv-2 text-primary"></i> Dashboard
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/especialidades">
-            <i class="ni ni-planet text-blue"></i> Especialidades
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/doctors">
-            <i class="ni ni-pin-3 text-orange"></i> Medicos
-        </a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/patients">
-            <i class="ni ni-single-02 text-yellow"></i> Pacientes
-        </a>
-        </li>
+    @include('backend.parciales.menu.' . auth()->user()->role)
+    <!--@if (auth()->user()->role == 'admin')
+        @include('backend.parciales.menu.admin')
      @elseif (auth()->user()->role == 'medico')
-        <li class="nav-item">
-            <a class="nav-link" href="/schedule">
-                <i class="ni ni-tv-2 text-primary"></i> Gestionar Horarios
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/especialidades">
-                <i class="ni ni-planet text-blue"></i> Mis citas
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/doctors">
-                <i class="ni ni-pin-3 text-orange"></i> Mis pacientes
-            </a>
-        </li>
+        @include('backend.parciales.menu.medico')
      @else {{-- pacientes --}}
-        <li class="nav-item">
-            <a class="nav-link" href="/appointments/create">
-                <i class="ni ni-tv-2 text-primary"></i> Reservar cita
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/appointments/index">
-                <i class="ni ni-planet text-blue"></i> Mis citas
-            </a>
-        </li>
-     @endif
+        @include('backend.parciales.menu.paciente')
+     @endif-->
     <li class="nav-item">
     <a class="nav-link" href="" onclick="event.preventDefault(); document.getElementById('formLogout').submit();">
         <i class="ni ni-key-25 text-info"></i> Cerrar Sesion
@@ -66,12 +25,9 @@
     </form>
     </li>
 </ul>
-@if (auth()->user()->role == 'admin')
-    <!-- Divider -->
+{{-- @if (auth()->user()->role == 'admin')
     <hr class="my-3">
-    <!-- Heading -->
     <h6 class="navbar-heading text-muted">Reportes</h6>
-    <!-- Navigation -->
     <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
         <a class="nav-link" href="#">
@@ -85,3 +41,4 @@
         </li>
     </ul>
 @endif
+--}}
