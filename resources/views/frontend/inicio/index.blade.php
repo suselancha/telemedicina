@@ -3,9 +3,9 @@
 @section('contenido')
     @include('frontend.inicio.banner')
     @include('frontend.inicio.seccion')
-    @include('frontend.inicio.about')
+    {{--@include('frontend.inicio.about')
     @include('frontend.inicio.team')
-    @include('frontend.parciales.banner1')
-    @include('frontend.inicio.especialidad')
+    @include('frontend.inicio.especialidad')--}}    
     @include('frontend.parciales.banner2')
+    @include('frontend.parciales.banner1')
 @endsection

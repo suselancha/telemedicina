@@ -4,19 +4,19 @@
         </a>
         </li>--}}
         <li class="nav-item">
-        <a class="nav-link" href="/especialidades">
-            <i class="ni ni-planet text-blue"></i> Especialidades
-        </a>
+            <a class="nav-link" href="/especialidades">
+                <i class="ni ni-planet text-blue"></i> Especialidades
+            </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="/doctors">
-            <i class="ni ni-pin-3 text-orange"></i> Medicos
-        </a>
+            <a class="nav-link" href="/doctors">
+                <i class="ni ni-pin-3 text-orange"></i> Medicos
+            </a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="/patients">
-            <i class="ni ni-single-02 text-yellow"></i> Pacientes
-        </a>
+            <a class="nav-link" href="/patients">
+                <i class="ni ni-single-02 text-yellow"></i> Pacientes
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/appointments/index">
@@ -24,7 +24,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="chatify">
+            <a class="nav-link" href="/chatify">
                 <i class="ni ni-circle-08 text-blue"></i> Chat
             </a>
         </li>
