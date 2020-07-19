@@ -61,3 +61,5 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/specialties/{specialty}/doctors', 'Api\SpecialtyController@doctors');
 Route::get('/schedule/hours', 'Api\ScheduleController@hours');
+
+Route::get('/schedule/calendar', 'Api\SpecialtyController@calendar');

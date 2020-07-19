@@ -15,6 +15,11 @@
                     Nuevo paciente
                   </a>
                 </div>
+                <div class="col text-right">
+                  <a href="{{ url('/schedule/calendar') }}" class="btn btn-sm btn-success">
+                    Registrar Evento
+                  </a>
+                </div>
               </div>
             </div>
             <div class="card-body">

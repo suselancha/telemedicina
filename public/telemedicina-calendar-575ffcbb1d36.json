@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "telemedicina-calendar",
+  "private_key_id": "575ffcbb1d36bfccb63c0e2db476a10031de1393",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDaeAYUiKy6Duqo\nQuhQreqO3aOQIb5GHG37qXYz/GMALWtmsfNNGKe26Mv1CWIQJ/uFQ0Yx4qySRR2l\nPPKDke5Gswxv91fnM6ofqg4Kajr5OGyA4ju8vxpnHPUZaMEXUr67ySRjQGbmwSRS\n4u0nWPqt7CaFfuXBdQ9dOrnbmJCzOd//wKfkqTFJs0FurSFiNUqQRa11+lji5Llu\nvzhcZOtFGhj8Pkh92D0coz/M8VbMYxxrImJEDGfIoBT/AUXjOWyQR8q7ommhZK6k\nWabDXXME2sEdx8t8IbcvWpm8/nxNUU8HkU+p8j+BPH1KeZIle7RE8u9Yn3WCk5qX\nJ/N9NyTTAgMBAAECggEABHesMX2iq+1ZKWwGLHwvTeZEuCel00Y1OOO8FI+72zQ9\nPCzgZk+zl58cE0cyrP+RpPsoCNDIqaG7MPaq7juCOAo6SLcx93rhfDichTmrOg8d\nfOc4xIEol4+KiDn8VNnu0jqTQWpUOwdxEuGBawARTumDgiWtqhlBjAJYQaAq5AH9\nxarRAXJHA7g32l7PiBcr24+Yo00i2uOGjRjL6ovsED0DcP9j17njcMNgCT1G6JvG\n6yMuhvotPRkboWF6e/2svwDBKu/rg8Gwb9BKKHucHsGztzbdXZkt16yQ74lq+9q2\nSvs8XLCARQDKX4cAO8imwG0VCJEQN3F4WtnyfdxelQKBgQD+IP0dS1M0lShXxAG3\ncaYYzsQ4Y1Qu1iWU7DjYO7f647qF4H42lM3t+yj8WEY0Cq1nmMKHQi/ZwVaIKL7I\noRvQMjiq6PWJGvfN2E3+9QIwqlU7E8P/sRBgA9yyciPp6wn88IUs8L9wPqsFtD34\nwqC1vcyvk9NfbJbQPGd5QiHS5wKBgQDcE9Gk2JLNjjLObeTFTGbVzG89kahUxSL2\naydnWkycjh8J9AStUMjBz1eJOF+XLIzzNNvDzLf/J+rjLjxnAppFOlaIl9sdA2C2\nGnK/obOup/uUcgKqoFWL2ycw2QBbsyugVwCLi2lSdXa/cg7yKBMlzL6gv0Vcwy0P\n0yIGECFNNQKBgC21qVF3lwPCQHto2hYw7vtPVaP+2cmC40eiJadfNnx+MbKa6pjO\nsyu3HWwmRJpfwUj9BSBnG0xDpljfW1GjCOmt3tt/A4shuqjf20ecskQmnyX9LCf1\npUhf6XZ/aU5N5IIGkS3AL+70lrZz8SGpgFawSPzbzg0/7vCNrN72sjbJAoGBAMFS\nA4l72VEJxWWCMUCDAZ5zK5B4/9YfKbwumnl2X+/yBB/5I5afbQqauTlHtOiV8Oa/\nGwFfNo3DodiYR+Tw61U+jr8ELizJR84PY5ckUzNsSlm24NLDbwIgq8eEB4WF2R/K\n7Sanewg9OOepKKndPByrQxTvj92RcWcCP1P2HVq1AoGAOfQHYPxDYxRjGb1i46MQ\nSuoUhxRx+j20sroHqctJ4TP1nYT7alnwf++w/GmOsmF6hxWUAdF+HPqedJxfbnZn\nIP9Z+FEZZR0p4JAq/w8JHMWMrGkpjr7E1sP4QjvCNMqRJXLxTxTap1nevmfG3FGh\nEtQmqvSEeWlgKPBOKjh4Z0U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cuenta-telemedicina@telemedicina-calendar.iam.gserviceaccount.com",
+  "client_id": "109141414381794170263",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cuenta-telemedicina%40telemedicina-calendar.iam.gserviceaccount.com"
+}
